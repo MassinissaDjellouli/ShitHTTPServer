@@ -7,16 +7,22 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Projec
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAC87D9A-6167-4716-B762-12630C9E192C}.Debug|ARM.ActiveCfg = Debug|x64
+		{FAC87D9A-6167-4716-B762-12630C9E192C}.Debug|ARM.Build.0 = Debug|x64
 		{FAC87D9A-6167-4716-B762-12630C9E192C}.Debug|x64.ActiveCfg = Debug|x64
 		{FAC87D9A-6167-4716-B762-12630C9E192C}.Debug|x64.Build.0 = Debug|x64
 		{FAC87D9A-6167-4716-B762-12630C9E192C}.Debug|x86.ActiveCfg = Debug|Win32
 		{FAC87D9A-6167-4716-B762-12630C9E192C}.Debug|x86.Build.0 = Debug|Win32
+		{FAC87D9A-6167-4716-B762-12630C9E192C}.Release|ARM.ActiveCfg = Release|ARM
+		{FAC87D9A-6167-4716-B762-12630C9E192C}.Release|ARM.Build.0 = Release|ARM
 		{FAC87D9A-6167-4716-B762-12630C9E192C}.Release|x64.ActiveCfg = Release|x64
 		{FAC87D9A-6167-4716-B762-12630C9E192C}.Release|x64.Build.0 = Release|x64
 		{FAC87D9A-6167-4716-B762-12630C9E192C}.Release|x86.ActiveCfg = Release|Win32

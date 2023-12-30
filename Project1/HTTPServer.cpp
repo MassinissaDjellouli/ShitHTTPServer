@@ -1,14 +1,25 @@
 #include "HTTPServer.h"
 
-ShitHTTP::HTTPServer* ShitHTTP::HTTPServer::create(int osFlag) {
-	return new ShitHTTP::HTTPServer(osFlag);
+ShitHTTP::HTTPServer* ShitHTTP::HTTPServer::create(int osFlag,int port) {
+	HTTPServer* server = new ShitHTTP::HTTPServer(osFlag, port);
+	ISocket* socket = server->socket;
+	socket->startListening();
+	return server;
 }
 
-ShitHTTP::HTTPServer::HTTPServer(int osFlag) {
+void ShitHTTP::HTTPServer::startHandlingRequests() {
+	this->socket->handleRequests();
+}
+ShitHTTP::HTTPServer::HTTPServer(int osFlag,int port) {
 	this->osFlag = osFlag;
 	setFactory();
 	std::cout << "CreatedServer\n";
-	factory->openSocket(80);
+	ISocket* socket = factory->openSocket(port);
+	if (socket == nullptr) {
+		std::cout << "Factory failed to open socket at port " << port << ".Exiting with code 0.\n";
+		exit(0);
+	}
+	this->socket = socket;
 }
 void ShitHTTP::HTTPServer::setFactory() {
 	switch (osFlag) {
@@ -23,4 +34,8 @@ void ShitHTTP::HTTPServer::setFactory() {
 		exit(0);
 	}
 };
+
+void ShitHTTP::HTTPServer::close() {
+	this->socket->stop();
+}
 

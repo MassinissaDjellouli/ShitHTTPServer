@@ -5,11 +5,14 @@
 namespace ShitHTTP{
 	class HTTPServer {
 	public:
-		static HTTPServer* create(int osFlag);
+		static HTTPServer* create(int osFlag,int port);
+		void startHandlingRequests();
+		void close();
 private:
-	HTTPServer(int osFlag);
+	HTTPServer(int osFlag,int port);
 	void setFactory();
 	IFactory* factory;
 	int osFlag;
+	ISocket* socket;
 	};
 }
