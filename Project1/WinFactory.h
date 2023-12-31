@@ -3,7 +3,7 @@
 #include "IFactory.h"
 #include <iostream>
 namespace ShitHTTP {
-	class WinFactory:IFactory{
+	class WinFactory:public IFactory{
 	public:
 		ISocket* openSocket(int port);
 	};

@@ -12,7 +12,7 @@ namespace ShitHTTP {
 		bool startListening();
 		WinSocket(int port);
 		int getPort();
-		void handleRequests();
+		void handleRequests(IHandler* handler);
 		void stop();
 	private:
 		SOCKET wsocket;

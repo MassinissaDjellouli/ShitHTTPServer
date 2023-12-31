@@ -132,6 +132,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -185,15 +186,21 @@
   <ItemGroup>
     <ClInclude Include="HTTPServer.h" />
     <ClInclude Include="IFactory.h" />
+    <ClInclude Include="IHandler.h" />
     <ClInclude Include="ISocket.h" />
+    <ClInclude Include="RequestBuilder.h" />
+    <ClInclude Include="WebServerHandler.h" />
     <ClInclude Include="WinFactory.h" />
     <ClInclude Include="WinSocket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HTTPServer.cpp" />
     <ClCompile Include="IFactory.cpp" />
+    <ClCompile Include="IHandler.cpp" />
     <ClCompile Include="ISocket.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RequestBuilder.cpp" />
+    <ClCompile Include="WebServerHandler.cpp" />
     <ClCompile Include="WinFactory.cpp" />
     <ClCompile Include="WinSocket.cpp" />
   </ItemGroup>

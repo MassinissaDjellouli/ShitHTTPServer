@@ -42,7 +42,7 @@ void ShitHTTP::WinSocket::stop() {
 	active = false;
 }
 
-void ShitHTTP::WinSocket::handleRequests() {
+void ShitHTTP::WinSocket::handleRequests(IHandler* handler) {
 	int bytesReceived;
 	while (active) {
 		new_wsocket = accept(wsocket, (SOCKADDR*)&server, &server_len);
@@ -57,12 +57,8 @@ void ShitHTTP::WinSocket::handleRequests() {
 			std::cout << "Could not read client request. \n";
 			continue;
 		}
-
-		std::string msg = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length:";
-		std::string response = "Hello world";
-		msg.append(std::to_string(response.size()));
-		msg.append("\n\n");
-		msg.append(response);
+		
+		std::string msg = handler->handle(buff);
 
 		int bytesSent = 0;
 		int totalBytesSent = 0;
