@@ -16,15 +16,6 @@ void my_handler(sig_atomic_t s) {
 int main() {
 
 	signal(SIGINT, my_handler);
-
-	int osFlag;
-	#if __linux__
-	osFlag = 0;
-	#elif _WIN32
-	osFlag = 1;
-	#else
-	osFlag = 2;
-	#endif
-	instance = HTTPServer::create(osFlag,8080);
+	instance = HTTPServer::create(8080);
 	instance->startHandlingRequests();
 }

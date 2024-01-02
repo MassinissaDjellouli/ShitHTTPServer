@@ -1,6 +1,14 @@
 #include "HTTPServer.h"
 
-ShitHTTP::HTTPServer* ShitHTTP::HTTPServer::create(int osFlag,int port = 8080) {
+ShitHTTP::HTTPServer* ShitHTTP::HTTPServer::create(int port = 8080) {
+	int osFlag;
+	#if __linux__
+		osFlag = 0;
+	#elif _WIN32
+		osFlag = 1;
+	#else
+		osFlag = 2;
+	#endif
 	HTTPServer* server = new ShitHTTP::HTTPServer(osFlag, port);
 	ISocket* socket = server->socket;
 	socket->startListening();
@@ -21,10 +29,17 @@ ShitHTTP::HTTPServer::HTTPServer(int osFlag,int port) {
 			exit(0);
 		}
 	}
-	this->handlers = getDefaultHandlers();
 	if (config.find("port") != config.end()) {
 		port = stoi(config["port"]);
 	}
+	if (config.find("dir") != config.end()) {
+		this->dir = config["dir"];
+	}
+	else {
+		this->dir = "./dist";
+	}
+	this->handlers = getDefaultHandlers();
+
 	if (config.find("handler") != config.end()) {
 		if (this->handlers.find(config["handler"]) != this->handlers.end()) {
 			this->handler = this->handlers[config["handler"]];
@@ -37,12 +52,7 @@ ShitHTTP::HTTPServer::HTTPServer(int osFlag,int port) {
 	else {
 		this->handler = this->handlers["webserver"];
 	}
-	if (config.find("dir") != config.end()) {
-		this->dir = config["dir"];
-	}
-	else {
-		this->dir = "./dist";
-	}
+
 	this->osFlag = osFlag;
 	setFactory();
 	std::cout << "CreatedServer\n";
@@ -69,7 +79,8 @@ void ShitHTTP::HTTPServer::setFactory() {
 };
 std::unordered_map<std::string, ShitHTTP::IHandler*> ShitHTTP::HTTPServer::getDefaultHandlers() {
 	std::unordered_map<std::string, IHandler*> defaultHandlers;
-	defaultHandlers["webserver"] = dynamic_cast<IHandler*>(new WebServerHandler());
+	std::cout << "D: " + this->dir << "\n";
+	defaultHandlers["webserver"] = dynamic_cast<IHandler*>(new BasicWebServerHandler(this->dir));
 	return defaultHandlers;
 }
 std::unordered_map<std::string, std::string> ShitHTTP::HTTPServer::readConfigFile() {
@@ -86,6 +97,7 @@ std::unordered_map<std::string, std::string> ShitHTTP::HTTPServer::readConfigFil
 		value = line.substr(line.find('=') + 1,std::string::npos);
 		config[key] = value;
 	}
+	file.close();
 	return config;
 }
 void ShitHTTP::HTTPServer::close() {

@@ -69,7 +69,6 @@ void ShitHTTP::WinSocket::handleRequests(IHandler* handler) {
 			}
 			totalBytesSent += bytesSent;
 		}
-		std::cout << "Sent Response with code 200\n";
 		closesocket(new_wsocket);
 	}
 	closesocket(wsocket);

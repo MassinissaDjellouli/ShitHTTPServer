@@ -9,6 +9,9 @@ class IHandler
 {
 public:
 	virtual std::string handle(std::string input) = 0;
+	IHandler(std::string dir);
+protected:
+	std::string dir;
 };
 }
 

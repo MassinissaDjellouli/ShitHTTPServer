@@ -4,11 +4,11 @@
 #include <unordered_map>
 #include <fstream>
 #include <filesystem>
-#include "WebServerHandler.h"
+#include "BasicWebServerHandler.h"
 namespace ShitHTTP{
 	class HTTPServer {
 	public:
-		static HTTPServer* create(int osFlag,int port);
+		static HTTPServer* create(int port);
 		void startHandlingRequests();
 		void close();
 private:

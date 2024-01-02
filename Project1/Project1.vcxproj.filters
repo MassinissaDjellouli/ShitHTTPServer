@@ -36,13 +36,19 @@
     <ClCompile Include="IFactory.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="WebServerHandler.cpp">
+    <ClCompile Include="BasicWebServerHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="IHandler.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="RequestBuilder.cpp">
+    <ClCompile Include="ResponseBuilder.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="HTTPStatus.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtils.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,13 +68,16 @@
     <ClInclude Include="IFactory.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="WebServerHandler.h">
+    <ClInclude Include="BasicWebServerHandler.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="IHandler.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="RequestBuilder.h">
+    <ClInclude Include="ResponseBuilder.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

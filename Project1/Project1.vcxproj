@@ -132,7 +132,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -188,19 +188,22 @@
     <ClInclude Include="IFactory.h" />
     <ClInclude Include="IHandler.h" />
     <ClInclude Include="ISocket.h" />
-    <ClInclude Include="RequestBuilder.h" />
-    <ClInclude Include="WebServerHandler.h" />
+    <ClInclude Include="ResponseBuilder.h" />
+    <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="BasicWebServerHandler.h" />
     <ClInclude Include="WinFactory.h" />
     <ClInclude Include="WinSocket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HTTPServer.cpp" />
+    <ClCompile Include="HTTPStatus.h" />
     <ClCompile Include="IFactory.cpp" />
     <ClCompile Include="IHandler.cpp" />
     <ClCompile Include="ISocket.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="RequestBuilder.cpp" />
-    <ClCompile Include="WebServerHandler.cpp" />
+    <ClCompile Include="ResponseBuilder.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="BasicWebServerHandler.cpp" />
     <ClCompile Include="WinFactory.cpp" />
     <ClCompile Include="WinSocket.cpp" />
   </ItemGroup>
