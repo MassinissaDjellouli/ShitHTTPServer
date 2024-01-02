@@ -184,6 +184,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BasicRestHandler.h" />
+    <ClInclude Include="CustomRestHandlerExample.h" />
     <ClInclude Include="HTTPServer.h" />
     <ClInclude Include="IFactory.h" />
     <ClInclude Include="IHandler.h" />
@@ -195,6 +197,8 @@
     <ClInclude Include="WinSocket.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BasicRestHandler.cpp" />
+    <ClCompile Include="CustomRestHandlerExample.cpp" />
     <ClCompile Include="HTTPServer.cpp" />
     <ClCompile Include="HTTPStatus.h" />
     <ClCompile Include="IFactory.cpp" />

@@ -15,7 +15,6 @@ public:
 	BasicWebServerHandler(std::string dir);
 protected:
 	std::string handleGet(std::list<std::string> input,std::string path);
-	std::string unhandled();
 };
 }
 

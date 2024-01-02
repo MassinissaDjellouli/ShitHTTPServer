@@ -3,6 +3,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "CustomRestHandlerExample.h"
 using namespace ShitHTTP;
 
 HTTPServer* instance;
@@ -17,5 +18,6 @@ int main() {
 
 	signal(SIGINT, my_handler);
 	instance = HTTPServer::create(8080);
+	instance->addHandler("rest",new CustomRestHandlerExample());
 	instance->startHandlingRequests();
 }

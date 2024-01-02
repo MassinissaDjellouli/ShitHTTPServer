@@ -11,6 +11,7 @@ namespace ShitHTTP{
 		static HTTPServer* create(int port);
 		void startHandlingRequests();
 		void close();
+		void addHandler(std::string name,IHandler* handler);
 private:
 	HTTPServer(int osFlag,int port);
 	void setFactory();
@@ -20,6 +21,7 @@ private:
 	ISocket* socket;
 	IHandler* handler;
 	std::unordered_map<std::string, IHandler*> handlers;
+	std::unordered_map<std::string, std::string> config;
 	std::unordered_map<std::string, IHandler*> getDefaultHandlers();
 	std::unordered_map<std::string,std::string> readConfigFile();
 	};

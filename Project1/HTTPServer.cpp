@@ -16,12 +16,25 @@ ShitHTTP::HTTPServer* ShitHTTP::HTTPServer::create(int port = 8080) {
 }
 
 void ShitHTTP::HTTPServer::startHandlingRequests() {
+	if (this->config.find("handler") != this->config.end()) {
+		if (this->handlers.find(this->config["handler"]) != this->handlers.end()) {
+			std::cout << "Using handler " << this->config["handler"] << "\n";
+			this->handler = this->handlers[this->config["handler"]];
+		}
+		else {
+			std::cout << "Handler " << this->config["handler"] << " is not supported. Exiting with code 0\n";
+			exit(0);
+		}
+	}
+	else {
+		std::cout << "Using default handler\n";
+		this->handler = this->handlers["webserver"];
+	}
 	this->socket->handleRequests(this->handler);
 }
 ShitHTTP::HTTPServer::HTTPServer(int osFlag,int port) {
-	std::unordered_map<std::string, std::string> config;
 	try {
-		config = readConfigFile();
+		this->config = readConfigFile();
 	}
 	catch(int e){
 		if (e == 1) {
@@ -29,29 +42,16 @@ ShitHTTP::HTTPServer::HTTPServer(int osFlag,int port) {
 			exit(0);
 		}
 	}
-	if (config.find("port") != config.end()) {
-		port = stoi(config["port"]);
+	if (this->config.find("port") != this->config.end()) {
+		port = stoi(this->config["port"]);
 	}
-	if (config.find("dir") != config.end()) {
-		this->dir = config["dir"];
+	if (this->config.find("dir") != this->config.end()) {
+		this->dir = this->config["dir"];
 	}
 	else {
 		this->dir = "./dist";
 	}
 	this->handlers = getDefaultHandlers();
-
-	if (config.find("handler") != config.end()) {
-		if (this->handlers.find(config["handler"]) != this->handlers.end()) {
-			this->handler = this->handlers[config["handler"]];
-		}
-		else {
-			std::cout << "Handler " << config["handler"] << " is not supported. Exiting with code 0\n";
-			exit(0);
-		}
-	}
-	else {
-		this->handler = this->handlers["webserver"];
-	}
 
 	this->osFlag = osFlag;
 	setFactory();
@@ -104,3 +104,6 @@ void ShitHTTP::HTTPServer::close() {
 	this->socket->stop();
 }
 
+void ShitHTTP::HTTPServer::addHandler(std::string name,IHandler* handler) {
+	this->handlers[name] = handler;
+}
